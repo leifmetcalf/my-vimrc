@@ -1,0 +1,5 @@
+[user]
+	email = me@leif.nz
+	name = Leif Metcalf
+[init]
+	defaultBranch = trunk
