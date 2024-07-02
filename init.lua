@@ -34,6 +34,8 @@ require"lazy".setup{
     branch = "0.1.x",
     dependencies = {"nvim-lua/plenary.nvim"}
   },
+  { "https://git.sr.ht/~sircmpwn/hare.vim" },
+  { "https://git.sr.ht/~torresjrjr/vim-haredoc" },
 }
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
@@ -41,3 +43,5 @@ vim.o.expandtab = true
 local builtin = require"telescope.builtin"
 vim.keymap.set("n", "<leader>f", builtin.find_files, {})
 vim.keymap.set("n", "<leader>b", builtin.buffers, {})
+vim.o.undofile = true
+vim.o.undodir = vim.fn.stdpath"state" .. "/undo"
