@@ -19,7 +19,7 @@ require"lazy".setup{
         ensure_installed = { "c", "lua", "rust" },
         highlight = { enable = true },
         incremental_selection = { enable = true },
-        indent = { enable = true },  
+        indent = { enable = true },
       }
     end
   },
