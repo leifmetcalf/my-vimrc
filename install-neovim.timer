@@ -1,0 +1,9 @@
+[Unit]
+Description=Install nightly neovim every week
+
+[Timer]
+OnUnitActiveSec=1week
+Unit=install-neovim.service
+
+[Install]
+WantedBy=timers.target

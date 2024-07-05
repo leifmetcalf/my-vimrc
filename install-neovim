@@ -1,3 +1,0 @@
-#!/bin/bash
-wget "https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage" -O "$HOME/.local/bin/nvim"
-chmod +x "$HOME/.local/bin/nvim"
