@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync mailbox every second
+
+[Timer]
+OnUnitActiveSec=1min
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target
