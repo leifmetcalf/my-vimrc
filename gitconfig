@@ -3,3 +3,7 @@
 	name = Leif Metcalf
 [init]
 	defaultBranch = trunk
+[credential]
+	helper = store
+[pull]
+	rebase = true

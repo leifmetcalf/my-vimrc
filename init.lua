@@ -55,3 +55,11 @@ require"lazy".setup{
 }
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function(args)
+    vim.keymap.set("n", "<leader>p", function()
+      vim.system{"latexmk", args.file}
+    end)
+  end
+})
