@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.number = true
+vim.o.showmode = false
 vim.o.undofile = true
 vim.o.undodir = vim.fn.stdpath"state" .. "/undo"
 vim.o.ignorecase = true
@@ -50,6 +51,13 @@ require"lazy".setup{
       local builtin = require"telescope.builtin"
       vim.keymap.set("n", "<leader>f", builtin.find_files)
       vim.keymap.set("n", "<leader>b", builtin.buffers)
+    end
+  },
+  { "echasnovski/mini.nvim",
+    version = false,
+    config = function()
+      require"mini.icons".setup{}
+      require"mini.statusline".setup{}
     end
   },
 }
