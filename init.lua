@@ -12,14 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.o.number = true
 vim.o.showmode = false
-vim.o.undofile = true
-vim.o.undodir = vim.fn.stdpath"state" .. "/undo"
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.keymap.set("n", "<Esc>", "<Cmd>nohlsearch<CR>")
 vim.o.inccommand = "split"
 vim.o.tabstop = 2
@@ -56,13 +49,16 @@ require"lazy".setup{
   { "echasnovski/mini.nvim",
     version = false,
     config = function()
+      require"mini.basics".setup{
+        options = {
+          extra_ui = true,
+        }
+      }
       require"mini.icons".setup{}
       require"mini.statusline".setup{}
     end
   },
 }
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function(args)
