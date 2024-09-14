@@ -19,22 +19,23 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
 require"lazy".setup{
-  { "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function ()
-      require"nvim-treesitter.configs".setup{
-        ensure_installed = { "c", "lua", "rust", "latex", "python" },
-        highlight = { enable = true },
-        incremental_selection = { enable = true },
-        indent = { enable = true },
-      }
-    end
-  },
   { "neovim/nvim-lspconfig",
     config = function ()
       local lspconfig = require"lspconfig"
       lspconfig.clangd.setup{}
       lspconfig.rust_analyzer.setup{}
+      lspconfig.hls.setup{}
+    end
+  },
+  { "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function ()
+      require"nvim-treesitter.configs".setup{
+        ensure_installed = { "c", "lua", "rust", "latex", "python", "html", "css", "javascript" },
+        highlight = { enable = true },
+        incremental_selection = { enable = true },
+        indent = { enable = true },
+      }
     end
   },
   { "nvim-telescope/telescope.nvim",
@@ -56,8 +57,34 @@ require"lazy".setup{
       }
       require"mini.icons".setup{}
       require"mini.statusline".setup{}
+      require"mini.files".setup{}
     end
   },
+  { "nvim-cmp",
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      local cmp = require"cmp"
+      cmp.setup{
+        mapping = cmp.mapping.preset.insert{
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        },
+        sources = cmp.config.sources{
+          { name = 'nvim_lsp' },
+        },
+      }
+    end
+  }
 }
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
