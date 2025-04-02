@@ -3,6 +3,6 @@ Description=Install nightly neovim
 
 [Service]
 Type=oneshot
-ExecStart=wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O %h/.local/bin/nvim
+ExecStart=wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage -O %h/.local/bin/nvim
 ExecStart=chmod +x %h/.local/bin/nvim
 

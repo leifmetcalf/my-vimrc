@@ -22,16 +22,14 @@ require"lazy".setup{
   { "neovim/nvim-lspconfig",
     config = function ()
       local lspconfig = require"lspconfig"
-      lspconfig.clangd.setup{}
       lspconfig.rust_analyzer.setup{}
-      lspconfig.hls.setup{}
     end
   },
   { "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function ()
       require"nvim-treesitter.configs".setup{
-        ensure_installed = { "c", "lua", "rust", "latex", "python", "html", "css", "javascript" },
+        ensure_installed = { "c", "lua", "rust", "python", "html", "css", "javascript" },
         highlight = { enable = true },
         incremental_selection = { enable = true },
         indent = { enable = true },
@@ -86,11 +84,3 @@ require"lazy".setup{
     end
   }
 }
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "tex",
-  callback = function(args)
-    vim.keymap.set("n", "<leader>p", function()
-      vim.system{"latexmk", args.file}
-    end)
-  end
-})

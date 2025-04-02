@@ -1,6 +1,0 @@
-[Unit]
-Description=Sync mailbox
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/mbsync -V primary
